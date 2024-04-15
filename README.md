@@ -75,12 +75,15 @@ export default {
 
 24. Congratulations!: You have successfully accessed the project on your local machine. You can now explore its features and functionalities.
 
-                            Remember to follow these steps carefully, and feel free to reach out if you encounter any issues!
+                                Remember to follow these steps carefully, and feel free to reach out if you encounter any issues!
 
-    <p align="center">
-
-      <img src="./src/assets/table_data.png" width="350" title="Data Table">
-      <img src="./src/assets/table_data_mobile_view.png" width="350" title="Data Table Mobile View Screen">
-      <img src="./src/assets/detail_page.png" width="350" alt="Detail Page">
-      <img src="./src/assets/detail_page_mobile_view.png" width="350" alt="Details Page Mobile View Screen">
-    </p>
+      <div align="center" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+        <img src="./src/assets/table_data.png" width="350" title="Data Table" alt="Data Table">
+        <p>Data Table</p>
+        <img src="./src/assets/table_data_mobile_view.png" width="350" title="Data Table Mobile View Screen" alt="Data Table Mobile View Screen">
+        <p>Data Table Mobile View Screen</p>
+        <img src="./src/assets/detail_page.png" width="350" title="Detail Page" alt="Detail Page">
+        <p>Detail Page</p>
+        <img src="./src/assets/detail_page_mobile_view.png" width="350" title="Details Page Mobile View Screen" alt="Details Page Mobile View Screen">
+        <p>Details Page Mobile View Screen</p>
+    </div>
