@@ -79,8 +79,8 @@ export default {
 
     <p align="center">
 
-      <img src="./src/assets/table_data.png" width="350" title="hover text">
-      <img src="./src/assets/table_data_mobile_view.png" width="350" title="hover text">
-      <img src="./src/assets/detail_page.png" width="350" alt="accessibility text">
-      <img src="./src/assets/detail_page_mobile_view.png" width="350" alt="accessibility text">
+      <img src="./src/assets/table_data.png" width="350" title="Data Table">
+      <img src="./src/assets/table_data_mobile_view.png" width="350" title="Data Table Mobile View Screen">
+      <img src="./src/assets/detail_page.png" width="350" alt="Detail Page">
+      <img src="./src/assets/detail_page_mobile_view.png" width="350" alt="Details Page Mobile View Screen">
     </p>
