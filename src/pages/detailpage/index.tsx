@@ -33,6 +33,8 @@ const Detailpage = () => {
         });
     }
   }, []);
+  let temp = (data?.main?.temp) - 273.15;
+  let temp_fixed = temp.toFixed(1);
 
   return (
     <div className="w-full px-2 min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500">
@@ -52,28 +54,28 @@ const Detailpage = () => {
             <p className="text-center text-[1.3rem] text-slate-200 mt-3">{data?.weather?.[0]?.description}</p>
 
 
-            <img src={`http://openweathermap.org/img/w/${data?.weather?.[0]?.icon}.png`} alt="" className="md:w-10 md:h-10 w-8 h-8 object-fill rounded-sm mx-auto mt-5" />
-            <p className="text-center md:text-[2.2rem] text-[1.6rem] font-bold text-white transition-all mt-3">{`${data?.main?.temp} °C`}</p>
+            <img src={`http://openweathermap.org/img/w/${data?.weather?.[0]?.icon}.png`} alt="" className="md:w-20 md:h-20 w-10 h-10 object-fill rounded-sm mx-auto mt-5" />
+            <p className="text-center md:text-[2.2rem] text-[1.6rem] font-bold text-white transition-all mt-3">{`${temp_fixed} °C`}</p>
             <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 mt-4 py-5">
               <div className="md:w-44 w-60 h-36 rounded-md flex flex-col items-center justify-center mx-auto" style={{ backgroundColor: 'rgba(255,255,255,0.3)' }}>
                 <img src={wind} alt="" className="md:w-[4rem] md:h-[4rem] w-8 h-8 object-fill" />
-                <p className="text-center text-[1.3rem] text-slate-200 font-semibold">WINDSPEED</p>
-                <p className="text-center text-[1.1rem] text-slate-200">{`${data?.wind?.speed} m/s`}</p>
+                <p className="text-center text-[1.3rem] text-white font-semibold">WINDSPEED</p>
+                <p className="text-center text-[1.1rem] text-slate-100">{`${data?.wind?.speed} m/s`}</p>
               </div>
               <div className="md:w-44 w-60 h-36 rounded-md flex flex-col items-center justify-center mx-auto" style={{ backgroundColor: 'rgba(255,255,255,0.3)' }}>
                 <img src={humidity} alt="" className="md:w-[4rem] md:h-[4rem] w-8 h-8 object-fill" />
-                <p className="text-center text-[1.3rem] text-slate-200 font-semibold">HUMIDITY</p>
-                <p className="text-center text-[1.1rem] text-slate-200">{`${data?.main?.humidity}%`} %</p>
+                <p className="text-center text-[1.3rem] text-white font-semibold">HUMIDITY</p>
+                <p className="text-center text-[1.1rem] text-slate-100">{`${data?.main?.humidity}%`} %</p>
               </div>
               <div className="md:w-44 w-60 h-36 rounded-md flex flex-col items-center justify-center mx-auto" style={{ backgroundColor: 'rgba(255,255,255,0.3)' }}>
                 <img src={cloud} alt="" className="md:w-[4rem] md:h-[4rem] w-8 h-8 object-fill" />
-                <p className="text-center text-[1.3rem] text-slate-200 font-semibold">CLOUDS</p>
-                <p className="text-center text-[1.1rem] text-slate-200">{`${data?.clouds?.all}%`}</p>
+                <p className="text-center text-[1.3rem] text-white font-semibold">CLOUDS</p>
+                <p className="text-center text-[1.1rem] text-slate-100">{`${data?.clouds?.all}%`}</p>
               </div>
               <div className="md:w-44 w-60 h-36 rounded-md flex flex-col items-center justify-center mx-auto" style={{ backgroundColor: 'rgba(255,255,255,0.3)' }}>
                 <img src={atmospheric_pressure} alt="" className="md:w-[4rem] md:h-[4rem] w-8 h-8 object-fill" />
-                <p className="text-center text-[1.3rem] text-slate-200 font-semibold">PRESSURE</p>
-                <p className="text-center text-[1.1rem] text-slate-200">{`${data?.main?.pressure}%`}</p>
+                <p className="text-center text-[1.3rem] text-white font-semibold">PRESSURE</p>
+                <p className="text-center text-[1.1rem] text-slate-100">{`${data?.main?.pressure}%`}</p>
               </div>
             </div>
 

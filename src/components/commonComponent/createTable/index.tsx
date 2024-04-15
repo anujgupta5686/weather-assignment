@@ -12,7 +12,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Filter } from "lucide-react";
+import { ArrowUpDown, Filter } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -103,7 +103,7 @@ export function CreateTable() {
         // const apiData = responseData.results;
         console.log('responseData', responseData)
         const formattedData = responseData?.results?.map((record: any) => ({
-          city: record?.name,
+          city: record?.ascii_name,
           country: record?.cou_name_en,
           timezone: record?.timezone,
           geoname_id: record.geoname_id,
@@ -140,7 +140,7 @@ export function CreateTable() {
   return (
     <div className="w-full">
       {loading && <Loadingpage />}
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 gap-2 flex-wrap justify-center">
         <Input
           placeholder="Search city..."
           value={(table.getColumn("city")?.getFilterValue() as string) ?? ""}
