@@ -75,4 +75,12 @@ export default {
 
 24. Congratulations!: You have successfully accessed the project on your local machine. You can now explore its features and functionalities.
 
-                        Remember to follow these steps carefully, and feel free to reach out if you encounter any issues!
+                            Remember to follow these steps carefully, and feel free to reach out if you encounter any issues!
+
+    <p align="center">
+
+      <img src="./src/assets/table_data.png" width="350" title="hover text">
+      <img src="./src/assets/table_data_mobile_view.png" width="350" title="hover text">
+      <img src="./src/assets/detail_page.png" width="350" alt="accessibility text">
+      <img src="./src/assets/detail_page_mobile_view.png" width="350" alt="accessibility text">
+    </p>
