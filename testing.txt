@@ -1,0 +1,162 @@
+import * as React from "react";
+import {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  VisibilityState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { ChevronDown } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+export type CityData = {
+  city: string;
+  country: string;
+  timezone: string;
+};
+
+export const columns: ColumnDef<CityData>[] = [
+  {
+    accessorKey: "city",
+    header: "City Name",
+    enableSorting: true,
+  },
+  {
+    accessorKey: "country",
+    header: "Country",
+    enableSorting: true,
+  },
+  {
+    accessorKey: "timezone",
+    header: "Timezone",
+    enableSorting: true,
+  },
+];
+
+export function CreateTable() {
+  const [data, setData] = React.useState<CityData[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+
+  React.useEffect(() => {
+    setLoading(true);
+    fetch(
+      "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/geonames-all-cities-with-a-population-1000/records?limit=100"
+    )
+      .then((response) => response.json())
+      .then((responseData) => {
+        const formattedData = responseData?.results?.map((record: any) => ({
+          city: record?.name,
+          country: record?.cou_name_en,
+          timezone: record?.timezone,
+        }));
+        setData(formattedData);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const table = useReactTable({
+    data,
+    columns,
+    onSortingChange: setSorting,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      sorting,
+    },
+  });
+
+  return (
+    <div className="w-full">
+      {loading && <div className="text-center py-4">Loading...</div>}
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Search city..."
+          value={(table.getColumn("city")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("city")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+      </div>
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : (
+                            <>
+                              {header.column.columnDef.header}
+                              {header.column.columnDef.enableSorting && (
+                                <Button
+                                  variant="ghost"
+                                  onClick={() => header.column.toggleSorting(header.column.getIsSorted() === "asc")}
+                                >
+                                  <ChevronDown
+                                    className={`ml-2 h-4 w-4 ${
+                                      header.column.getIsSorted() === "asc" ? "transform rotate-180" : ""
+                                    }`}
+                                  />
+                                </Button>
+                              )}
+                            </>
+                          )
+                      }
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+  );
+}
