@@ -1,7 +1,7 @@
 import { CreateTable } from "@/components/commonComponent/createTable"
 const Homepage = () => {
   return (
-    <div className='w-full bg-gradient-to-r from-cyan-500 to-blue-500'>
+    <div className='w-full'>
       <div className='sticky'>
         <p className='text-center font-serif lg:text-[1.7rem] text-lg font-extralight text-white py-5 transition-all'>Detect Weather Information</p>
       </div>
