@@ -8,7 +8,9 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
-      <App />
+      <div className='bg-gradient-to-r from-cyan-500 to-blue-500 min-h-screen'>
+        <App />
+      </div>
     </BrowserRouter>
   </QueryClientProvider>
 
